@@ -1,7 +1,7 @@
-package Logic;
-
+package com.ben.midlife.Logic;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 /**
  * Created by Benny on 1/1/2017.
@@ -17,7 +17,7 @@ public class BattleInterface {
     }
 
     public BattleInterface(Player player){
-        ArrayList<Entity> listOfEntities = new ArrayList<>();
+        ArrayList<Entity> listOfEntities = new ArrayList<Entity>();
         listOfEntities.add(player);
         listOfEntities.add(new Entity("Ogre"));
         this.manager = new BattleManager(listOfEntities);

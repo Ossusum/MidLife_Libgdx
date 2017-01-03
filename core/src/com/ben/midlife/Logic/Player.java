@@ -1,4 +1,4 @@
-package Logic;
+package com.ben.midlife.Logic;
 
 /**
  * Created by Benny on 11/20/2016.

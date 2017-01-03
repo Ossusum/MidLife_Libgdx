@@ -1,8 +1,8 @@
-package GUI;
+package com.ben.midlife.GUI;
 
-import Logic.BattleInterface;
-import Logic.Entity;
-import Logic.Player;
+import com.ben.midlife.Logic.BattleInterface;
+import com.ben.midlife.Logic.Entity;
+import com.ben.midlife.Logic.Player;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -34,7 +34,7 @@ public class Client {
         System.out.println(second);
 
         //loading characters
-        ArrayList<Entity> test = new ArrayList<>();
+        ArrayList<Entity> test = new ArrayList<Entity>();
         test.add(monster);
         test.add(second);
 
