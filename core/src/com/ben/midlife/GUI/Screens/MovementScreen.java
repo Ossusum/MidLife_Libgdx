@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.ben.midlife.Logic.Map;
+import com.ben.midlife.Logic.PlayerBody;
 import com.ben.midlife.Logic.Tile;
 import com.ben.midlife.MidLife;
 
@@ -24,15 +25,18 @@ public class MovementScreen implements Screen {
     private World world;
     private OrthographicCamera camera;
     private Box2DDebugRenderer debugRenderer;
+    private PlayerBody playerBody;
 
     public MovementScreen(MidLife midLife) {
         this.midLife = midLife;
         this.world = new World(new Vector2(0, -10), true);
         // create the camera and the SpriteBatch
         this.camera = new OrthographicCamera();
-        this.camera.setToOrtho(false, 50, 50);
-        //this.camera.translate(-camera.viewportWidth / 2, -camera.viewportHeight / 2, 0);
+
         this.map = new Map(this.world, new Random().nextInt(10)+10,new Random().nextInt(10)+10);
+        this.playerBody = new PlayerBody(this.world);
+        this.camera.setToOrtho(false, 10, 10);
+        //this.camera.translate(-camera.viewportWidth / 2, -camera.viewportHeight / 2, 0);
         map.generateRandomMap();
         this.debugRenderer = new Box2DDebugRenderer();
 
@@ -45,6 +49,7 @@ public class MovementScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        this.camera.position.set(playerBody.getPosition(), 0);
         camera.update();
         world.step(1 / 60f, 6, 2);
 
