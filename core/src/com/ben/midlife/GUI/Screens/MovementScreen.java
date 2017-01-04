@@ -9,15 +9,18 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.ben.midlife.Logic.Map;
 import com.ben.midlife.Logic.Tile;
 import com.ben.midlife.MidLife;
+
+import java.util.Random;
 
 /**
  * Created by 1firegamer on 1/2/2017.
  */
 public class MovementScreen implements Screen {
     private MidLife midLife;
-    private Tile TestTile;
+    private Map map;
     private World world;
     private OrthographicCamera camera;
     private Box2DDebugRenderer debugRenderer;
@@ -27,12 +30,10 @@ public class MovementScreen implements Screen {
         this.world = new World(new Vector2(0, -10), true);
         // create the camera and the SpriteBatch
         this.camera = new OrthographicCamera();
-        this.camera.setToOrtho(false, 10, 10);
-        this.camera.translate(-camera.viewportWidth / 2, -camera.viewportHeight / 2, 0);
-
-        this.TestTile = new Tile(this.world,new Vector2(0,0));
-        TestTile.createTile();
-        new Tile(this.world,new Vector2(1,0)).createTile();
+        this.camera.setToOrtho(false, 50, 50);
+        //this.camera.translate(-camera.viewportWidth / 2, -camera.viewportHeight / 2, 0);
+        this.map = new Map(this.world, new Random().nextInt(10)+10,new Random().nextInt(10)+10);
+        map.generateRandomMap();
         this.debugRenderer = new Box2DDebugRenderer();
 
     }
@@ -85,6 +86,6 @@ public class MovementScreen implements Screen {
 
     @Override
     public void dispose() {
-        TestTile.dispose();
+        map.dispose();
     }
 }
