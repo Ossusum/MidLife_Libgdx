@@ -45,6 +45,7 @@ public class PlayerBody {
 //        fixtureDef.restitution = 0.6f; // Make it bounce a little bit
 // Create our fixture and attach it to the body
         body.createFixture(fixtureDef);
+        body.setUserData("Player");
 
 // Remember to dispose of any shapes after you're done with them!
 // BodyDef and FixtureDef don't need disposing, but shapes do.

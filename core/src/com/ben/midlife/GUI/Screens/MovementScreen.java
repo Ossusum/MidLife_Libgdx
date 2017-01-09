@@ -10,9 +10,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.ben.midlife.Logic.CollisionListener;
 import com.ben.midlife.Logic.Map;
 import com.ben.midlife.Logic.Player;
 import com.ben.midlife.Logic.PlayerBody;
@@ -38,6 +40,7 @@ public class MovementScreen implements Screen {
     public MovementScreen(MidLife midLife) {
         this.midLife = midLife;
         this.world = new World(new Vector2(0, 0), true);
+        this.world.setContactListener(new CollisionListener(midLife, this));
         // create the camera and the SpriteBatch
         this.camera = new OrthographicCamera();
         this.map = new Map(this.world, new Random().nextInt(10)+10,new Random().nextInt(10)+10);
